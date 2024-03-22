@@ -2,7 +2,8 @@ import { useContext, useId, useState } from "react";
 import { EmbeddingContext } from "./App";
 
 export default function movieForm() {
-  const { generateRecommendationResponse } = useContext(EmbeddingContext);
+  const { generateRecommendationResponse, isLoading, setIsLoading } =
+    useContext(EmbeddingContext);
   const movieFormId = useId();
 
   const [userInput, setUserInput] = useState({
@@ -13,11 +14,12 @@ export default function movieForm() {
 
   function handleSubmit(event) {
     event.preventDefault();
+    setIsLoading(true);
     generateRecommendationResponse(
-      `I want to watch a movie here are some preferences: 
-       - In terms of mood: ${userInput.mood},
-       - In terms of fun/seriousness: ${userInput.fun},
-       - My favorite movie is ${userInput.favMovie}.
+      `
+      Favorite movie: ${userInput.favMovie}
+      New or classic: ${userInput.mood}
+      Fun or serious: ${userInput.fun}
       `
     );
     setUserInput({
@@ -67,7 +69,9 @@ Because it taught me to never give up hope no matter how hard life gets"
           onChange={(e) => handleUserInputChange(e)}
           value={userInput.fun}
         />
-        <button>Let's Go</button>
+        <button disabled={isLoading}>
+          {isLoading ? "Loading..." : "Let's Go"}
+        </button>
       </form>
     </div>
   );

@@ -1,15 +1,38 @@
+import { useContext } from "react";
+import { EmbeddingContext } from "./App";
+
 export default function MovieResult() {
+  const { resetRecommendation, recommendationResponse } =
+    useContext(EmbeddingContext);
+
+  let content;
+  if (recommendationResponse.error) {
+    content = (
+      <>
+        <div className="movie-result">
+          <h2>Error happened: {recommendationResponse.error}</h2>
+        </div>
+      </>
+    );
+  } else {
+    content = (
+      <>
+        <div className="movie-result">
+          <h2>
+            {recommendationResponse.title} ({recommendationResponse.release})
+          </h2>
+          <p>{recommendationResponse.description}</p>
+        </div>
+      </>
+    );
+  }
+
   return (
     <>
-      <div className="movie-result">
-        <h2>School of Rock (2009)</h2>
-        <p>
-          A fun and stupid movie about a wannabe rocker turned fraud substitute
-          teacher forming a rock band with his students to win the Battle of the
-          Bands
-        </p>
-      </div>
-      <button className="movie-result-button">Go Again</button>
+      {content}
+      <button className="movie-result-button" onClick={resetRecommendation}>
+        Go Again
+      </button>
     </>
   );
 }

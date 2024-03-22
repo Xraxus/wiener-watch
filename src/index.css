@@ -92,12 +92,19 @@ button {
   font-size: 1.75rem;
   font-weight: 600;
   padding: 0.5em;
+  cursor: pointer;
 }
 
 button:hover,
 button:active,
 button:focus {
   background-color: #ffadad;
+}
+
+button:disabled {
+  background-color: #c6c6c6;
+  color: #4a4a4a;
+  cursor: not-allowed;
 }
 
 @media (max-width: 1086px) {
