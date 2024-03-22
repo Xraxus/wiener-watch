@@ -1,11 +1,20 @@
-import { useId } from "react";
+import { useContext, useId } from "react";
+import { EmbeddingContext } from "./App";
 
 export default function movieForm() {
+  const { getUserQueryEmbedding } = useContext(EmbeddingContext);
   const movieFormId = useId();
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    getUserQueryEmbedding(
+      "I want to watch a movie - something stupid and fun, released in 1990. My fav movie is Cars"
+    );
+  }
 
   return (
     <div className="movie-form-wrapper">
-      <form className="movie-form">
+      <form className="movie-form" onSubmit={(e) => handleSubmit(e)}>
         <label htmlFor={`q1-${movieFormId}`}>
           What's your favorite movie and why?
         </label>

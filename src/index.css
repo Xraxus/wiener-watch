@@ -89,7 +89,7 @@ button {
   font-family: "Roboto Slab", serif;
   background-color: #ffd6d6;
   border: 0;
-  font-size: 2rem;
+  font-size: 1.75rem;
   font-weight: 600;
   padding: 0.5em;
 }
@@ -116,7 +116,7 @@ button:focus {
   }
 
   button {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
   }
 }
 
