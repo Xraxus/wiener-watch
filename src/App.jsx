@@ -1,5 +1,11 @@
+import Logo from "./Logo";
 
-
-function App() {}
+function App() {
+  return (
+    <>
+      <Logo />
+    </>
+  );
+}
 
 export default App;
