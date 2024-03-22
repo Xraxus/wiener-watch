@@ -2,7 +2,7 @@ import { useContext, useId, useState } from "react";
 import { EmbeddingContext } from "./App";
 
 export default function movieForm() {
-  const { getUserQueryEmbedding } = useContext(EmbeddingContext);
+  const { generateRecommendationResponse } = useContext(EmbeddingContext);
   const movieFormId = useId();
 
   const [userInput, setUserInput] = useState({
@@ -13,7 +13,7 @@ export default function movieForm() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    getUserQueryEmbedding(
+    generateRecommendationResponse(
       `I want to watch a movie here are some preferences: 
        - In terms of mood: ${userInput.mood},
        - In terms of fun/seriousness: ${userInput.fun},
