@@ -7,7 +7,7 @@ function App() {
     <>
       <Logo />
       <MovieResult />
-      {/* <MovieForm /> */}
+      <MovieForm />
     </>
   );
 }

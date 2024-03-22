@@ -3,7 +3,7 @@
 }
 
 :root {
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto Slab", sans-serif;
 }
 
 /* LOGO COMPONENT */
@@ -19,6 +19,7 @@
 }
 
 .logo h1 {
+  font-family: "Roboto", sans-serif;
   margin-top: -0.25rem;
   font-size: 3.25rem;
   font-weight: 500;
@@ -69,7 +70,6 @@
 }
 
 .movie-form label {
-  font-family: "Roboto Slab", serif;
   font-size: 1.25rem;
 }
 
@@ -86,6 +86,7 @@
 }
 
 button {
+  font-family: "Roboto Slab", serif;
   background-color: #ffd6d6;
   border: 0;
   font-size: 2rem;
@@ -113,9 +114,7 @@ button:focus {
   .movie-form label {
     font-size: 1.125rem;
   }
-  .movie-form textarea {
-    font-size: 0.925rem;
-  }
+
   button {
     font-size: 1.75rem;
   }
@@ -125,7 +124,6 @@ button:focus {
 
 .movie-result {
   margin: 0 auto 2em;
-  font-family: "Roboto Slab", serif;
   background-color: #cee9f2;
   padding: 0.25em 1em;
   width: 50%;
