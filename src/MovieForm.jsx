@@ -1,15 +1,36 @@
-import { useContext, useId } from "react";
+import { useContext, useId, useState } from "react";
 import { EmbeddingContext } from "./App";
 
 export default function movieForm() {
   const { getUserQueryEmbedding } = useContext(EmbeddingContext);
   const movieFormId = useId();
 
+  const [userInput, setUserInput] = useState({
+    favMovie: "",
+    mood: "",
+    fun: "",
+  });
+
   function handleSubmit(event) {
     event.preventDefault();
     getUserQueryEmbedding(
-      "I want to watch a movie - something stupid and fun, released in 1990. My fav movie is Cars"
+      `I want to watch a movie here are some preferences: 
+       - In terms of mood: ${userInput.mood},
+       - In terms of fun/seriousness: ${userInput.fun},
+       - My favorite movie is ${userInput.favMovie}.
+      `
     );
+    setUserInput({
+      favMovie: "",
+      mood: "",
+      fun: "",
+    });
+  }
+
+  function handleUserInputChange(event) {
+    setUserInput((UI) => {
+      return { ...UI, [event.target.name]: event.target.value };
+    });
   }
 
   return (
@@ -22,6 +43,9 @@ export default function movieForm() {
           id={`q1-${movieFormId}`}
           placeholder="The Shawshank Redemption
 Because it taught me to never give up hope no matter how hard life gets"
+          name="favMovie"
+          onChange={(e) => handleUserInputChange(e)}
+          value={userInput.favMovie}
         />
         <label htmlFor={`q2-${movieFormId}`}>
           Are you in the mood for something new or a classic?
@@ -29,6 +53,9 @@ Because it taught me to never give up hope no matter how hard life gets"
         <textarea
           id={`q2-${movieFormId}`}
           placeholder="I want to watch movies that were released after 1990"
+          name="mood"
+          onChange={(e) => handleUserInputChange(e)}
+          value={userInput.mood}
         />
         <label htmlFor={`q3-${movieFormId}`}>
           Do you wanna have fun or do you want something serious?
@@ -36,6 +63,9 @@ Because it taught me to never give up hope no matter how hard life gets"
         <textarea
           id={`q3-${movieFormId}`}
           placeholder="I want to watch something stupid and fun"
+          name="fun"
+          onChange={(e) => handleUserInputChange(e)}
+          value={userInput.fun}
         />
         <button>Let's Go</button>
       </form>

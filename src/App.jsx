@@ -32,7 +32,6 @@ function App() {
         }}
       >
         <Logo />
-        <MovieResult />
         <MovieForm />
       </EmbeddingContext.Provider>
     </>
